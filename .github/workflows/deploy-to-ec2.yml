@@ -18,7 +18,7 @@ jobs:
 
       - name: Copy GUI and service files to EC2
         run: |
-          scp -i private_key.pem -o StrictHostKeyChecking=no -r ../InSpectRail ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu/InSpectRail/
+          scp -i private_key.pem -o StrictHostKeyChecking=no -r . ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu/InSpectRail/
 
       - name: Deploy on EC2 with systemd
         uses: appleboy/ssh-action@v0.1.6
