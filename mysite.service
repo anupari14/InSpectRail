@@ -1,0 +1,14 @@
+[Unit]
+Description=My Site Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/InSpectRail/
+ExecStart=/home/ubuntu/InSpectRail/mysite/ python3 manage.py runserver
+
+Restart=always
+Environment=PATH=/home/ubuntu/InSpectRail/inspectrail/bin
+
+[Install]
+WantedBy=multi-user.target
