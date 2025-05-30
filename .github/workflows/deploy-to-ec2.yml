@@ -35,8 +35,8 @@ jobs:
             # Setup venv
             python3 -m venv inspectrail
             . inspectrail/bin/activate
-            pip install --upgrade pip
-            pip install -r requirements.txt
+            pip3 install --upgrade pip
+            pip3 install -r requirements.txt
 
             # Move service files
             sudo mv /home/ubuntu/InSpectRail/mysite.service /etc/systemd/system/
