@@ -32,19 +32,27 @@ jobs:
             # Stop services if running
             sudo systemctl stop mysite.service || true
 
-            # Setup venv
+            # Install python3-venv if not available
+            sudo apt-get update
+            sudo apt-get install -y python3-venv
+
+            # Setup virtual environment
             python3 -m venv inspectrail
-            source inspectrail/bin/activate && pip install --upgrade pip &&  pip install -r requirements.txt
+            source inspectrail/bin/activate
 
-            # Move service files
-            sudo mv /home/ubuntu/InSpectRail/mysite.service /etc/systemd/system/
+            # Upgrade pip and install requirements
+            pip install --upgrade pip
+            pip install -r requirements.txt
 
-            # Reload and enable services
+            # Move and fix systemd service file (ensure it's valid)
+            sudo mv mysite.service /etc/systemd/system/
+
+            # Reload and enable systemd services
             sudo systemctl daemon-reexec
             sudo systemctl daemon-reload
             sudo systemctl enable mysite.service
 
-            # Start services
+            # Start the service
             sudo systemctl restart mysite.service
 
             echo "✅ Deployment completed using systemd services."

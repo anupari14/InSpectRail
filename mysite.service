@@ -4,11 +4,10 @@ After=network.target
 
 [Service]
 User=ubuntu
-WorkingDirectory=/home/InSpectRail/
-ExecStart=/home/ubuntu/InSpectRail/mysite/ python3 manage.py runserver
-
-Restart=always
+WorkingDirectory=/home/ubuntu/InSpectRail/mysite/
+ExecStart=/home/ubuntu/InSpectRail/inspectrail/bin/python3 manage.py runserver 0.0.0.0:8000
 Environment=PATH=/home/ubuntu/InSpectRail/inspectrail/bin
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
